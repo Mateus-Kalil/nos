@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mateus & Yasmim - Nossa História</title>
+    <title>Mateus & Yasmim</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -504,7 +504,7 @@
         // Criar galáxia com partículas animadas
         function createGalaxy() {
             const galaxy = document.getElementById('galaxy');
-            const particleCount = 100;
+            const particleCount = 150;
             const colors = [
                 'rgba(255, 107, 157, ',
                 'rgba(196, 69, 105, ',
@@ -516,7 +516,7 @@
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                const size = Math.random() * 4 + 2;
+                const size = Math.random() * 6 + 3;
                 const left = Math.random() * 100;
                 const delay = Math.random() * 20;
                 const duration = Math.random() * 20 + 30;
@@ -534,10 +534,10 @@
             }
 
             // Adicionar estrelas estáticas piscando
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 75; i++) {
                 const star = document.createElement('div');
                 star.style.position = 'absolute';
-                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.width = Math.random() * 4.5 + 1.5 + 'px';
                 star.style.height = star.style.width;
                 star.style.borderRadius = '50%';
                 star.style.background = 'white';
