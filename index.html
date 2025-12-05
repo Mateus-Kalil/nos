@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mateus & Yasmim - Nossa História</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b9d;
+            --secondary: #c44569;
+            --accent: #ffa8d5;
+            --bg-start: #0f0c29;
+            --bg-mid: #302b63;
+            --bg-end: #24243e;
+            --text-light: #ffffff;
+            --text-soft: rgba(255, 255, 255, 0.85);
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.18);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-mid) 50%, var(--bg-end) 100%);
+            min-height: 100vh;
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 157, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(196, 69, 105, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 40% 40%, rgba(255, 168, 213, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+            animation: breathe 20s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+            50% { opacity: 0.7; transform: scale(1.1) rotate(5deg); }
+        }
+
+        .galaxy {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 2rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .header-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--text-soft);
+            font-weight: 300;
+            letter-spacing: 4px;
+        }
+
+        .section {
+            margin: 4rem 0;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.15) 0%, rgba(196, 69, 105, 0.15) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 107, 157, 0.5);
+            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3), 0 0 80px rgba(255, 107, 157, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            display: block;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(255, 107, 157, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 30px rgba(255, 107, 157, 0.5);
+        }
+
+        .card-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-description {
+            text-align: center;
+            color: var(--text-soft);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .messages-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 24px;
+            padding: 3rem;
+            margin: 4rem 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .message-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary);
+            position: relative;
+            animation: slideIn 0.6s ease-out;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .message-card:nth-child(even) {
+            border-left-color: var(--accent);
+        }
+
+        .message-author {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .message-content {
+            line-height: 1.8;
+            color: var(--text-soft);
+            font-size: 1rem;
+        }
+
+        .dates-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .date-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .date-card:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 107, 157, 0.5);
+            box-shadow: 0 12px 40px rgba(255, 107, 157, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .date-label {
+            font-size: 0.9rem;
+            color: var(--text-soft);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .date-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-soft);
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            header {
+                padding: 2rem 1rem;
+            }
+
+            .section {
+                margin: 2rem 0;
+            }
+
+            .messages-section {
+                padding: 1.5rem;
+            }
+
+            .message-card {
+                padding: 1.5rem;
+            }
+
+            .card {
+                padding: 2rem;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <div class="galaxy" id="galaxy"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="header-title">Mateus & Yasmim</h1>
+            <p class="header-subtitle">Nossa História de Amor</p>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">Nossas Galerias</h2>
+            <div class="grid">
+                <a href="yafotos.html">
+                    <div class="card">
+                        <div class="card-icon">
+                            <img src="ya.png" alt="Yasmim">
+                        </div>
+                        <h3 class="card-title">Yasmim</h3>
+                        <p class="card-description">Uma coleção de momentos especiais da pessoa mais linda</p>
+                    </div>
+                </a>
+
+                <a href="mafotos.html">
+                    <div class="card">
+                        <div class="card-icon">
+                            <img src="ma.png" alt="Mateus">
+                        </div>
+                        <h3 class="card-title">Mateus</h3>
+                        <p class="card-description">Memórias e momentos guardados com carinho</p>
+                    </div>
+                </a>
+
+                <a href="nos.html">
+                    <div class="card">
+                        <div class="card-icon">
+                            <img src="nos2.png" alt="Nós Dois">
+                        </div>
+                        <h3 class="card-title">Nós Dois</h3>
+                        <p class="card-description">Juntos, criando nossa própria história</p>
+                    </div>
+                </a>
+
+                <a href="petfotos.html">
+                    <div class="card">
+                        <div class="card-icon">
+                            <img src="pets.png" alt="Nossos Pets">
+                        </div>
+                        <h3 class="card-title">Nossos Pets</h3>
+                        <p class="card-description">Os amores peludinhos que fazem parte da nossa família</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Mensagens do Coração</h2>
+            <div class="messages-section">
+                <div class="message-card">
+                    <div class="message-author">De: Yasmim</div>
+                    <div class="message-content">
+                        Desde que você apareceu na minha vida, tudo ganhou um novo sentido. Não sei explicar como, mas sinto que já te esperava mesmo sem saber. Não precisamos nos ver para eu saber que você é especial, porque meu coração reconhece o seu em cada palavra que trocamos. Você é a certeza no meio das minhas dúvidas, o abraço que ainda não senti mas que já me conforta. Entre tantas pessoas no mundo, foi você quem se tornou único para mim. E mesmo sem o encontro dos nossos olhos, eu já sei: você é o meu lugar.
+                    </div>
+                </div>
+
+                <div class="message-card">
+                    <div class="message-author">De: Mateus</div>
+                    <div class="message-content">
+                        Amor, eu sou completamente apaixonado por você, minha princesa, você é a única pessoa que me faz sorrir só de estar falando comigo qualquer coisa ou até uma simples mensagem, eu quero estar com você em cada fase da minha vida, pois escolho você para sempre, quero seguir ao seu lado, amar você é tão bom, você é o meu descanso, meu sorriso, meu céu, meu abrigo, meu lugar preferido, agradeço a Deus por ter você comigo todos os dias, você é o amor da minha vida e tudo que sempre sonhei, te amo muito e vou amar para sempre pq você é a minha escolha e você é tudo que eu sempre sonhei, te amo muito meu amor.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Datas Especiais</h2>
+            <div class="dates-section">
+                <div class="date-card">
+                    <div class="date-label">Primeiro Oi</div>
+                    <div class="date-value">Em Breve</div>
+                </div>
+                <div class="date-card">
+                    <div class="date-label">Primeiro Encontro</div>
+                    <div class="date-value">Em Breve</div>
+                </div>
+                <div class="date-card">
+                    <div class="date-label">Momentos Juntos</div>
+                    <div class="date-value">Para Sempre</div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Criado com amor por Mateus para nossa história juntos</p>
+        </footer>
+    </div>
+
+    <script>
+        // Criar galáxia com partículas animadas
+        function createGalaxy() {
+            const galaxy = document.getElementById('galaxy');
+            const particleCount = 100;
+            const colors = [
+                'rgba(255, 107, 157, ',
+                'rgba(196, 69, 105, ',
+                'rgba(255, 168, 213, ',
+                'rgba(255, 255, 255, '
+            ];
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 4 + 2;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 20;
+                const duration = Math.random() * 20 + 30;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const opacity = Math.random() * 0.5 + 0.3;
+                
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = left + '%';
+                particle.style.animationDelay = delay + 's';
+                particle.style.animationDuration = duration + 's';
+                particle.style.background = `radial-gradient(circle, ${color}${opacity}) 0%, ${color}0) 70%)`;
+                
+                galaxy.appendChild(particle);
+            }
+
+            // Adicionar estrelas estáticas piscando
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'absolute';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.borderRadius = '50%';
+                star.style.background = 'white';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite`;
+                star.style.animationDelay = Math.random() * 3 + 's';
+                galaxy.appendChild(star);
+            }
+        }
+
+        // Animação de entrada dos elementos
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            elements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.8s ease-out';
+                observer.observe(el);
+            });
+        }
+
+        // Inicializar
+        createGalaxy();
+        animateOnScroll();
+    </script>
+</body>
+</html>
