@@ -3,13 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mateus & Yasmim</title>
-
-
-    <link rel="icon" href="favicon.png" type="image/x-icon" />
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
-    
-    
+    <title>Mateus & Yasmim - Nossa História</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -222,9 +216,22 @@
             transition: all 0.4s ease;
         }
 
+        .grid > a:nth-child(1) .card-icon,
+        .grid > a:nth-child(2) .card-icon {
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
+            overflow: visible;
+        }
+
         .card:hover .card-icon {
             transform: scale(1.1) rotate(5deg);
             box-shadow: 0 8px 30px rgba(255, 107, 157, 0.5);
+        }
+
+        .grid > a:nth-child(1) .card:hover .card-icon,
+        .grid > a:nth-child(2) .card:hover .card-icon {
+            box-shadow: none;
         }
 
         .card-icon img {
@@ -422,17 +429,17 @@
         <section class="section">
             <h2 class="section-title">Nossas Galerias</h2>
             <div class="grid">
-                <a href="yafotos.html">
+                <a href="https://meuamor.fun/yafotos">
                     <div class="card">
                         <div class="card-icon">
                             <img src="ya.png" alt="Yasmim">
                         </div>
                         <h3 class="card-title">Yasmim</h3>
-                        <p class="card-description">Uma coleção de momentos especiais da pessoa mais linda</p>
+                        <p class="card-description">Coleção de momentos especiais da pessoa mais linda</p>
                     </div>
                 </a>
 
-                <a href="mafotos.html">
+                <a href="https://meuamor.fun/mafotos">
                     <div class="card">
                         <div class="card-icon">
                             <img src="ma.png" alt="Mateus">
@@ -442,7 +449,7 @@
                     </div>
                 </a>
 
-                <a href="nos.html">
+                <a href="https://meuamor.fun/nos">
                     <div class="card">
                         <div class="card-icon">
                             <img src="nos2.png" alt="Nós Dois">
@@ -452,7 +459,7 @@
                     </div>
                 </a>
 
-                <a href="petfotos.html">
+                <a href="https://meuamor.fun/petfotos">
                     <div class="card">
                         <div class="card-icon">
                             <img src="pets.png" alt="Nossos Pets">
@@ -502,15 +509,14 @@
         </section>
 
         <footer>
-            <p>Criado com amor por Mateus para nossa história juntos</p>
+            <p>Criado com amor por Mateus e Yasmim para nossa história juntos</p>
         </footer>
     </div>
 
     <script>
-        // Criar galáxia com partículas animadas
         function createGalaxy() {
             const galaxy = document.getElementById('galaxy');
-            const particleCount = 150;
+            const particleCount = 100;
             const colors = [
                 'rgba(255, 107, 157, ',
                 'rgba(196, 69, 105, ',
@@ -522,7 +528,7 @@
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                const size = Math.random() * 6 + 3;
+                const size = Math.random() * 4 + 2;
                 const left = Math.random() * 100;
                 const delay = Math.random() * 20;
                 const duration = Math.random() * 20 + 30;
@@ -539,11 +545,10 @@
                 galaxy.appendChild(particle);
             }
 
-            // Adicionar estrelas estáticas piscando
-            for (let i = 0; i < 75; i++) {
+            for (let i = 0; i < 50; i++) {
                 const star = document.createElement('div');
                 star.style.position = 'absolute';
-                star.style.width = Math.random() * 4.5 + 1.5 + 'px';
+                star.style.width = Math.random() * 3 + 1 + 'px';
                 star.style.height = star.style.width;
                 star.style.borderRadius = '50%';
                 star.style.background = 'white';
@@ -555,7 +560,6 @@
             }
         }
 
-        // Animação de entrada dos elementos
         function animateOnScroll() {
             const elements = document.querySelectorAll('.section');
             
@@ -576,7 +580,6 @@
             });
         }
 
-        // Inicializar
         createGalaxy();
         animateOnScroll();
     </script>
