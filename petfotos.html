@@ -5,12 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nossos Pets - Galeria</title>
 
-
-
     <link rel="icon" href="favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
-    
-    
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -344,7 +340,6 @@
     </div>
 
     <script>
-        // Criar galáxia com partículas animadas
         function createGalaxy() {
             const galaxy = document.getElementById('galaxy');
             const particleCount = 80;
@@ -376,7 +371,6 @@
                 galaxy.appendChild(particle);
             }
 
-            // Adicionar estrelas estáticas piscando
             for (let i = 0; i < 40; i++) {
                 const star = document.createElement('div');
                 star.style.position = 'absolute';
@@ -408,13 +402,13 @@
         function createGallery() {
             const gallery = document.getElementById('gallery');
             
-            for (let i = 1; i <= 2; i++) {
+            for (let i = 1; i <= 100; i++) {
                 const item = document.createElement('div');
                 item.className = 'gallery-item';
                 item.style.animationDelay = `${i * 0.02}s`;
                 
                 const img = document.createElement('img');
-                img.src = `y${i}.png`;
+                img.src = `${i}p.png`;
                 img.alt = `Nossos Pets ${i}`;
                 img.loading = 'lazy';
                 
@@ -428,7 +422,7 @@
                 };
                 
                 img.onload = function() {
-                    item.onclick = () => openModal(`y${i}.png`);
+                    item.onclick = () => openModal(`${i}p.png`);
                 };
                 
                 item.appendChild(img);
@@ -450,21 +444,18 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Fechar modal ao clicar fora da imagem
         document.getElementById('modal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
             }
         });
 
-        // Fechar modal com tecla ESC
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeModal();
             }
         });
 
-        // Inicializar galeria
         createGalaxy();
         createGallery();
     </script>
